@@ -26,7 +26,7 @@ namespace API.Helpers
                     }
                 }
             }
-            return String.Join(" ", chunks);
+            return string.Join(" ", chunks);
         }
     }
 }
