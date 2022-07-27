@@ -9,5 +9,7 @@ namespace API.Interfaces
         Task<List<Blog>> GetBlogs(string category);
         
         Task<Blog> GetBlogById(int blogId);
+        
+        void DeleteBlog(int id);
     }
 }

@@ -33,10 +33,10 @@ namespace API.Controllers
             return Ok(_mapper.Map<List<BlogDto>>(blogs));
         }
 
-        [HttpGet("{blogId}")]
-        public async Task<ActionResult<BlogDto>> GetBlog(int blogId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BlogDto>> GetBlog(int id)
         {
-            Blog blog = await _unitOfWork.BlogRepository.GetBlogById(blogId);
+            Blog blog = await _unitOfWork.BlogRepository.GetBlogById(id);
 
             return Ok(_mapper.Map<BlogDto>(blog));
         }
@@ -50,12 +50,22 @@ namespace API.Controllers
                 Category = createMessageDto.Category,
                 Content = createMessageDto.Content,
                 CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
             };
 
             _unitOfWork.BlogRepository.CreateBlog(blog);
             if (await _unitOfWork.Complete()) return Ok();
 
             return BadRequest("Problem adding blog");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBlog(int id)
+        {
+            _unitOfWork.BlogRepository.DeleteBlog(id);
+            if (await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Problem deleting blog");
         }
     }
 }

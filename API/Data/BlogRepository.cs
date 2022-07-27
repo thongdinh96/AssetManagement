@@ -18,6 +18,12 @@ namespace API.Data
             _context.Blogs?.Add(blog);
         }
 
+        public void DeleteBlog(int id)
+        {
+            Blog blog = _context.Blogs.FirstOrDefault(b => b.Id == id);            
+            _context.Blogs?.Remove(blog);
+        }
+
         public async Task<Blog> GetBlogById(int blogId)
         {
             Blog blog = await _context.Blogs.Where(b => b.Id == blogId).FirstOrDefaultAsync();
