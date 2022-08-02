@@ -9,6 +9,7 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<Blog, BlogDto>();
+            CreateMap<UpdateBlogDto, Blog>();
         }
     }
 }

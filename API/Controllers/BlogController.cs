@@ -42,13 +42,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<string>> CreateBlog(CreateBlogDto createMessageDto)
+        public async Task<ActionResult<string>> CreateBlog(CreateBlogDto createBlogDto)
         {
             var blog = new Blog
             {
-                Title = createMessageDto.Title,
-                Category = createMessageDto.Category,
-                Content = createMessageDto.Content,
+                Title = createBlogDto.Title,
+                Category = createBlogDto.Category,
+                Content = createBlogDto.Content,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };
@@ -57,6 +57,15 @@ namespace API.Controllers
             if (await _unitOfWork.Complete()) return Ok();
 
             return BadRequest("Problem adding blog");
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Blog>> UpdateBlog(UpdateBlogDto updateBlogDto)
+        {
+            Blog updatedBlog = _unitOfWork.BlogRepository.EditBlog(_mapper.Map<Blog>(updateBlogDto));
+            if (await _unitOfWork.Complete()) return Ok(updatedBlog);
+
+            return BadRequest("Problem editing blog");
         }
 
         [HttpDelete("{id}")]
