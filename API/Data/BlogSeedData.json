@@ -1,0 +1,17 @@
+[
+  {
+    "Title": "Everything you need to know about OOP (Object oriented programming)",
+    "Content": "<h2><strong>What is Object Oriented Programming (OOP)?</strong></h2><p>An object-oriented programming is a way programming which enables programmers to think like they are working with real-life entities <i>(a thing with distinct and independent existence)</i> or objects. In real-life, people have knowledge and can do various works. In OOP, objects have fields to store knowledge/state/data and can do various works — methods.</p><h2><strong>Basic Terminologies</strong></h2><h3><strong>Object</strong></h3><p>It’s the instance of a class/ it’s the working entity of a class.</p><h2><strong>Class</strong></h2><p>It is a template or blue print about the capability of what an object can do.</p><h2><strong>Method</strong></h2><p>The behaviours of a class. It tells what a method can do.</p><h2><strong>Instance</strong></h2><p>Object and Instance both are same with small difference.</p><p><strong>A blueprint for a house design is like a class description. All the houses built from that blueprint are objects of that class. A given house is an instance.</strong></p><h2><strong>Instance != Instance Variable</strong></h2><p>&nbsp;</p>",
+    "Category": "programming"
+  },
+  {
+    "Title": "Everything you need to know about C#",
+    "Content": "<h2>What Is C#?</h2><p>C# is a modern, general-purpose programming language that can be used to perform a wide range of tasks and objectives that span over a variety of professions. C# is primarily used on the Windows .NET framework, although it can be applied to an open source platform. This highly versatile programming language is an object-oriented programming language (OOP)— which isn’t very common — and fairly new to the game, yet already a reliable crowd pleaser.</p>",
+    "Category": "programming"
+  },
+  {
+    "Title": "Everything you need to know about REST APIs",
+    "Content": "<p>In this age of integrations, sharing data between systems is more important than ever.</p><p>Imagine an ecommerce website without integrations. On top of handling product listings, your site would need to build tools for processing payment, shipping, email automation, user accounts, and other functions all by itself. This isn’t a scalable solution — it’s more efficient to outsource these tasks to other services.</p><p>So, in order to work together, software applications use application programming interfaces, or APIs. APIs provide a standardized way for two applications to send data back and forth. Your ecommerce site can interact with payment software, shipping software, and any other necessary integrations through their respective APIs.</p><p>There are many approaches to building an API, but if you’re interested in introducing software integrations to your product, there’s one special method you should know: <strong>REST APIs</strong>. In this guide, I’ll explain what a REST API is and why they’re so useful.</p>",
+    "Category": "programming"
+  }
+]

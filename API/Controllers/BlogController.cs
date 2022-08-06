@@ -20,6 +20,24 @@ namespace API.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [HttpPost]
+        public async Task<ActionResult<string>> CreateBlog(CreateBlogDto createBlogDto)
+        {
+            var blog = new Blog
+            {
+                Title = createBlogDto.Title,
+                Category = createBlogDto.Category,
+                Content = createBlogDto.Content,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            _unitOfWork.BlogRepository.CreateBlog(blog);
+            if (await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Problem adding blog");
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<BlogDto>>> GetBlogs(string category)
         {
@@ -39,24 +57,6 @@ namespace API.Controllers
             Blog blog = await _unitOfWork.BlogRepository.GetBlogById(id);
 
             return Ok(_mapper.Map<BlogDto>(blog));
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<string>> CreateBlog(CreateBlogDto createBlogDto)
-        {
-            var blog = new Blog
-            {
-                Title = createBlogDto.Title,
-                Category = createBlogDto.Category,
-                Content = createBlogDto.Content,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
-            };
-
-            _unitOfWork.BlogRepository.CreateBlog(blog);
-            if (await _unitOfWork.Complete()) return Ok();
-
-            return BadRequest("Problem adding blog");
         }
 
         [HttpPut]
