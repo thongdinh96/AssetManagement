@@ -1,0 +1,42 @@
+<div class="list-group">
+  <li
+    *ngFor="let blog of blogs"
+    class="list-group-item list-group-item-action"
+    aria-current="true"
+  >
+    <div class="w-100">
+      <label>
+        <input
+          class="form-check-input me-1"
+          type="checkbox"
+          value="{{ blog.id }}"
+          (change)="onSelectBlog($event)"
+        />
+        <span class="blog-title">{{ blog.title }}</span>
+      </label>
+      <small class="blog-time">{{ blog.updatedAt | timeago }}</small>
+    </div>
+    <div class="mb-1">
+      {{ blog.content
+      }}<a [routerLink]="['/blogs', blog.id]" class="continue-link"
+        >continue reading</a
+      >
+    </div>
+  </li>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="pagination.TotalItems"
+    [itemsPerPage]="pagination.ItemsPerPage"
+    [(ngModel)]="pagination.CurrentPage"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+  >
+  </pagination>
+</div>
+

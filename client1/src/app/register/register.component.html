@@ -1,0 +1,27 @@
+<form [formGroup]="registerForm" autocomplete="off">
+  <h2 class="text-center text-primary">Sign up</h2>
+  <hr />
+  <app-text-input [formControl]="" [label]="'Username'"></app-text-input>
+  <app-text-input [formControl]="" [label]="'Email'"></app-text-input>
+  <app-text-input
+    [formControl]=""
+    [label]="'Password'"
+    [type]="'password'"
+  ></app-text-input>
+  <app-text-input
+    [formControl]=""
+    [label]="'Confirm password'"
+    [type]="'password'"
+  ></app-text-input>
+  <!-- <div class="row">
+    <ul class="text-danger">
+      <li *ngFor="let error of validationErrors">
+        {{ error }}
+      </li>
+    </ul>
+  </div> -->
+  <div class="form-group text-center">
+    <button class="btn btn-success mr-2" type="submit">Register</button>
+    <button class="btn btn-success mr-2" type="button">Cancel</button>
+  </div>
+</form>

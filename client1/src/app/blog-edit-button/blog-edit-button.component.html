@@ -1,0 +1,46 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit blog</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="bsModalRef.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input
+      type="text"
+      placeholder="Title"
+      aria-label="Title"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="blog.title"
+      class="form-control mb-3"
+    />
+    <ckeditor
+      [editor]="Editor"
+      [(ngModel)]="blog.content"
+      placeholder="Type the content here!"
+      (change)="onChange($event)"
+    ></ckeditor>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary float-start"
+      (click)="onEditBlog()"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>
+
+<button
+  type="button"
+  class="btn btn-success mb-3"
+  (click)="openEditBlogModal(template)"
+>
+  Edit post
+</button>

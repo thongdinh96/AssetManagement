@@ -1,0 +1,13 @@
+.blog-title {
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.blog-time {
+    float: right;
+}
+
+.continue-link {
+    font-style: italic;
+}

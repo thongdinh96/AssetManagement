@@ -1,0 +1,78 @@
+<ng-template #confirmListTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ confirmTitle }}</h4>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure to delete selected blogs?</p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      data-bs-dismiss="modal"
+      (click)="onClickNoButton()"
+    >
+      No
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onDeleteSelectedPosts()"
+    >
+      Yes
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #infoTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ infoTitle }}</h4>
+  </div>
+  <div class="modal-body">
+    <p>Please select at least one blog to delete!</p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-dismiss="modal"
+      (click)="onClickOkButton()"
+    >
+      Ok
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #confirmPostTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ confirmTitle }}</h4>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure to delete this blog?</p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary btn-sm"
+      data-bs-dismiss="modal"
+      (click)="onClickNoButton()"
+    >
+      No
+    </button>
+    <button type="button" class="btn btn-primary" (click)="onDeleteBlog()">
+      Yes
+    </button>
+  </div>
+</ng-template>
+
+<button
+  type="button"
+  class="btn btn-danger mb-3 btn-sm"
+  (click)="
+    lastPath == 'programming'
+      ? openConfirmDeleteModal(confirmListTemplate, infoTemplate)
+      : openConfirmDeleteBlog(confirmPostTemplate)
+  "
+>
+  {{ lastPath == "programming" ? "Delete selected post" : "Delete post" }}
+</button>
