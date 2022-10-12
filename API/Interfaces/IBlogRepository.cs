@@ -1,3 +1,4 @@
+using API.DTOs;
 using API.Entities;
 
 namespace API.Interfaces
@@ -8,7 +9,7 @@ namespace API.Interfaces
         
         Blog EditBlog(Blog blog);
 
-        Task<List<Blog>> GetBlogs(string category);
+        Task<List<BlogDto>> GetBlogs(string category);
         
         Task<Blog> GetBlogById(int blogId);
         

@@ -1,5 +1,6 @@
 ﻿using API.DTOs;
 using API.Entities;
+using API.Extensions;
 using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
@@ -39,16 +40,18 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<BlogDto>>> GetBlogs(string category)
+        public async Task<ActionResult<List<BlogDto>>> GetBlogs([FromQuery] PaginationParams paginationParams, string category)
         {
-            List<Blog> blogs = await _unitOfWork.BlogRepository.GetBlogs(category);
+            List<BlogDto> blogs = await _unitOfWork.BlogRepository.GetBlogs(category);
             blogs = blogs.Select(b =>
             {
                 b.Content = Utils.ExtractText(b.Content);
                 b.Content = string.Join(" ", b.Content.Split().Take(Constants.BlogDescriptionWordsCount).ToArray()) + "...";
                 return b;
             }).ToList();
-            return Ok(_mapper.Map<List<BlogDto>>(blogs));
+            var blogsPagedList = PagedList<BlogDto>.Create(blogs.AsQueryable(), paginationParams.PageNumber, paginationParams.PageSize);
+            Response.AddPaginationHeader(blogsPagedList.CurrentPage, blogsPagedList.PageSize, blogsPagedList.TotalCount, blogsPagedList.TotalPages);
+            return Ok(blogsPagedList);
         }
 
         [HttpGet("{id}")]

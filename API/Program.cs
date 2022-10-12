@@ -45,8 +45,7 @@ try
 {
     var context = services.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
-    var unitOfWork = services.GetRequiredService<UnitOfWork>();
-    await Seed.SeedBlogs(unitOfWork, context);
+    await Seed.SeedBlogs(context);
 }
 catch (Exception ex)
 {

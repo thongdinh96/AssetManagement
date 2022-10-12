@@ -7,7 +7,7 @@ namespace API.Data
 {
     public class Seed
     {
-        public static async Task SeedBlogs(IUnitOfWork unitOfWork, DataContext context)
+        public static async Task SeedBlogs(DataContext context)
         {
             if (await context.Blogs.AnyAsync()) return;
             var blogData = await File.ReadAllTextAsync("Data/BlogSeedData.json");
@@ -18,15 +18,18 @@ namespace API.Data
             foreach (Blog blog in blogs)
             {
                 blog.CreatedAt = DateTime.Now;
-                unitOfWork.BlogRepository.CreateBlog(blog);
+                blog.UpdatedAt = DateTime.Now;
+                context.Blogs.Add(blog);
             }
 
-            bool createRes = await unitOfWork.Complete();
+            int createRes = await context.SaveChangesAsync();
 
-            if (!createRes)
+            if (createRes == 0)
             {
                 throw new Exception("Error on seeding blogs");
             }
+
+            
         }
     }
 }

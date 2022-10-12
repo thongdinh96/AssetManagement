@@ -16,7 +16,7 @@ namespace API.Data
 
         }
 
-        public IBlogRepository BlogRepository => new BlogRepository(_context);
+        public IBlogRepository BlogRepository => new BlogRepository(_context, _mapper);
 
         public async Task<bool> Complete()
         {

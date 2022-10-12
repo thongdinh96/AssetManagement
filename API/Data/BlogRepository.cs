@@ -1,5 +1,8 @@
+using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -7,10 +10,12 @@ namespace API.Data
     public class BlogRepository : IBlogRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public BlogRepository(DataContext context)
+        public BlogRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public void CreateBlog(Blog blog)
@@ -30,7 +35,7 @@ namespace API.Data
 
         public void DeleteBlog(int id)
         {
-            Blog blog = _context.Blogs.FirstOrDefault(b => b.Id == id);            
+            Blog blog = _context.Blogs.FirstOrDefault(b => b.Id == id);
             _context.Blogs?.Remove(blog);
         }
 
@@ -41,11 +46,15 @@ namespace API.Data
             return blog;
         }
 
-        public async Task<List<Blog>> GetBlogs(string category)
+        public async Task<List<BlogDto>> GetBlogs(string category)
         {
-            List<Blog> blogs = await _context.Blogs.Where(b => b.Category == category).ToListAsync();
+            var blogs = await _context.Blogs
+                .Where(b => b.Category == category)
+                .ProjectTo<BlogDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
 
             return blogs;
+
         }
     }
 }
