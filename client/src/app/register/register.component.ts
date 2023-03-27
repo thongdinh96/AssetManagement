@@ -6,6 +6,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -15,19 +16,26 @@ import { AccountService } from '../_services/account.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  validationErrors: string[] = [];
+  maxDate: Date;
 
   constructor(
     private accountService: AccountService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
   initializeForm() {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
+      email: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
       password: [
         '',
         [Validators.required, Validators.minLength(4), Validators.maxLength(8)],
@@ -48,5 +56,12 @@ export class RegisterComponent implements OnInit {
         ? null
         : { isMatching: true };
     };
+  }
+
+  register() {
+    this.accountService.register(this.registerForm.value).subscribe({
+      complete: () => this.router.navigateByUrl('/'),
+      error: (e) => (this.validationErrors = e),
+    });
   }
 }

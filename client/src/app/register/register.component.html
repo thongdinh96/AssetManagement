@@ -1,27 +1,70 @@
-<form [formGroup]="registerForm" autocomplete="off">
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="registerForm.valid && register()"
+  autocomplete="off"
+>
   <h2 class="text-center text-primary">Sign up</h2>
-  <hr />
-  <app-text-input [formControl]="" [label]="'Username'"></app-text-input>
-  <app-text-input [formControl]="" [label]="'Email'"></app-text-input>
-  <app-text-input
-    [formControl]=""
-    [label]="'Password'"
-    [type]="'password'"
-  ></app-text-input>
-  <app-text-input
-    [formControl]=""
-    [label]="'Confirm password'"
-    [type]="'password'"
-  ></app-text-input>
-  <!-- <div class="row">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <app-text-input
+        [formControl]="registerForm.controls['username']"
+        [label]="'Username'"
+      ></app-text-input>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <app-text-input
+        [formControl]="registerForm.controls['email']"
+        [label]="'Email'"
+      ></app-text-input>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <app-date-input
+        [formControl]="registerForm.controls['dateOfBirth']"
+        [label]="'Date Of Birth'"
+        [maxDate]="maxDate"
+      ></app-date-input>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <app-text-input
+        [formControl]="registerForm.controls['password']"
+        [label]="'Password'"
+        [type]="'password'"
+      ></app-text-input>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <app-text-input
+        [formControl]="registerForm.controls['confirmPassword']"
+        [label]="'Confirm password'"
+        [type]="'password'"
+      ></app-text-input>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
     <ul class="text-danger">
       <li *ngFor="let error of validationErrors">
         {{ error }}
       </li>
     </ul>
-  </div> -->
-  <div class="form-group text-center">
-    <button class="btn btn-success mr-2" type="submit">Register</button>
-    <button class="btn btn-success mr-2" type="button">Cancel</button>
+  </div>
+  <div class="form-group text-center mt-3">
+    <button class="btn btn-lg btn-primary me-2" type="submit">Register</button>
   </div>
 </form>

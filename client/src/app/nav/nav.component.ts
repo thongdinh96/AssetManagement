@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {}
   
   onSignUp() {
-    this.accountService.register(null);
+    this.router.navigate(['/register']);
   }
 
   onSignIn() {
