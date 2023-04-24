@@ -22,6 +22,7 @@ namespace API.Data
         {
             _context.Blogs?.Add(blog);
         }
+        
         public Blog EditBlog(Blog blog)
         {
             Blog toUpdateBlog = _context.Blogs.FirstOrDefault(b => b.Id == blog.Id);

@@ -16,6 +16,8 @@ namespace API.Data
         }
 
         public DbSet<Blog> Blogs { get; set; }
+        
+        public DbSet<CryptoOrder> CryptoOrders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

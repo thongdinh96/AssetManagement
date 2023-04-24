@@ -18,9 +18,9 @@ import { BlogDeleteButtonComponent } from './blog-delete-button/blog-delete-butt
 import { BlogEditButtonComponent } from './blog-edit-button/blog-edit-button.component';
 import { RegisterComponent } from './register/register.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
-import { CryptoCurrenciesComponent } from './crypto-currencies/crypto-currencies.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { SharedModule } from './_modules/shared.module';
+import { CryptoOrderComponent } from './crypto-order/crypto-order.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +36,8 @@ import { SharedModule } from './_modules/shared.module';
     BlogEditButtonComponent,
     RegisterComponent,
     TextInputComponent,
-    CryptoCurrenciesComponent,
     DateInputComponent,
+    CryptoOrderComponent,
   ],
   imports: [
     BrowserModule,

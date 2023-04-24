@@ -11,6 +11,7 @@ namespace API.Helpers
             CreateMap<RegisterDto, AppUser>();
             CreateMap<Blog, BlogDto>();
             CreateMap<UpdateBlogDto, Blog>();
+            CreateMap<CryptoOrderDto, CryptoOrder>().ReverseMap();
         }
     }
 }
